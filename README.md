@@ -20,7 +20,7 @@ python resizer.py --folder_name images --size 500
 # 'images' 폴더 내의 이미지들을 세로 500으로 resizing (가로 자동 조정)
 
 python resizer.py --folder_name images --size 1000 --is_width_base
-# 'images' 폴더 내의 이미지들을 가로 500으로 resizing (세로 자동 조정)
+# 'images' 폴더 내의 이미지들을 가로 1000으로 resizing (세로 자동 조정)
 
 ```
 **arguments**
