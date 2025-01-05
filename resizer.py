@@ -21,9 +21,9 @@ def image_resizing(folder_name, file_name, extention, size, is_width_based = Fal
     resized_image.save(f'./resized/{file_name}.{extention}')
 
 
-def run(**kwargs):
+def run(folder_name, size):
 
-    file_list = list(glob.glob(f"./{kwargs['folder_name']}/*.*"))
+    file_list = list(glob.glob(f"./{folder_name}/*.*"))
     file_list = [file_name.split('\\')[-1] for file_name in file_list]
 
     is_exist_resized = os.path.exists(f"./resized")
@@ -47,7 +47,7 @@ def run(**kwargs):
 
     for file_extention in file_list:
         file_name, extention = file_extention.split('.')
-        image_resizing(kwargs['folder_name'], file_name, extention, kwargs['size'])
+        image_resizing(folder_name, file_name, extention, size)
 
 
 def is_debug_mode():
