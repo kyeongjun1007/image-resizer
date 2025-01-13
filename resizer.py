@@ -6,7 +6,7 @@ import glob
 from PIL import Image
 
 
-def image_resizing(folder_name, file_name, extention, size, is_width_based = False):
+def image_resizing(folder_name, file_name, extention, size, is_width_based):
     image = Image.open(f'./{folder_name}/{file_name}.{extention}')
     width, height = image.size
 
@@ -21,7 +21,7 @@ def image_resizing(folder_name, file_name, extention, size, is_width_based = Fal
     resized_image.save(f'./resized/{file_name}.{extention}')
 
 
-def run(folder_name, size):
+def run(folder_name, size, is_width_based):
 
     file_list = list(glob.glob(f"./{folder_name}/*.*"))
     file_list = [file_name.split('\\')[-1] for file_name in file_list]
@@ -47,7 +47,7 @@ def run(folder_name, size):
 
     for file_extention in file_list:
         file_name, extention = file_extention.split('.')
-        image_resizing(folder_name, file_name, extention, size)
+        image_resizing(folder_name, file_name, extention, size, is_width_based)
 
 
 def is_debug_mode():
@@ -63,14 +63,14 @@ if __name__ == '__main__':
 
     parser.add_argument('--folder_name', type=str, help="이미지 데이터 폴더명")
     parser.add_argument('--size', type=int, help="출력 이미지 사이즈")
-    parser.add_argument('--is_width_base', action='store_true', help="가로를 기준으로 설정")
+    parser.add_argument('--is_width_based', action='store_true', help="가로를 기준으로 설정")
 
     args = parser.parse_args()
 
     kwargs = {
     'folder_name' : args.folder_name,
     'size' : args.size,
-    'is_width_base' : args.is_width_base
+    'is_width_based' : args.is_width_based
     }
 
     run(**kwargs)
